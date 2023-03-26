@@ -1,11 +1,18 @@
 # Payment Server
 ## Download latest server source
-https://github.com/qxm/test\_payment
+https://github.com/qxm/test_payment
 
 ## Run server
 mvn spring-boot:run
 
 # Payment React Client
+## Download client source
+https://github.com/qxm/payment_react
+
+## Start Client
+npm install
+npm start
+
 ## Login
 http://localhost:3000
 if user not present, will automatically register user using the password
