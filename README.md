@@ -1,17 +1,12 @@
 # Payment React Client
 ## Login
 http://localhost:3000
-**test client 1**
-username: Alice
-password: user
-**test client 2**
-username: Bob
-password: admin
-
+if user not present, will automatically register user using the password
+next time, need use the setting password to login 
 ## top up
-input amount
+input top up amount
 ## pay to
-input name and amount
+input payee name and transfered amount
 
 ## switch user
 http://localhost:3000
