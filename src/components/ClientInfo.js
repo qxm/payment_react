@@ -3,13 +3,16 @@ import React , { useEffect, useState } from 'react';
 import { SERVER_URL } from '../constants.js';
 //import AuthContext from './AuthContext';
 import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
 import TopUp from './TopUp';
 import Pay from './Pay';
 
 function ClientInfo() {
   //const authContext = React.useContext(AuthContext);
   const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
   const [balance, setBalance] = useState('');
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     fetchClient();
   },[]);
@@ -43,6 +46,8 @@ function ClientInfo() {
     .then(response => {
       if (response.ok) {
         fetchClient();
+        setMessage(`Top up ${amount}`);
+        setOpen(true);
       }
       else {
         alert('Something went wrong!');
@@ -64,6 +69,8 @@ function ClientInfo() {
     .then(response => {
       if (response.ok) {
         fetchClient();
+        setMessage(`Transferred ${payment.amount} to ${payment.to}`);
+        setOpen(true);
       }
       else {
         alert('Something went wrong!');
@@ -80,7 +87,13 @@ function ClientInfo() {
       </Stack>
       <div style={{ height: 500, width: '100%' }}>
         <p>Hello {name}</p>
-        <p>Your balance: {balance}</p>
+        <p>Your balance is {balance}</p>
+      <Snackbar
+          open={open}
+          autoHideDuration={2000}
+          onClose={() => setOpen(false)}
+          message={message}
+        />
       </div>
     </React.Fragment>
    );
