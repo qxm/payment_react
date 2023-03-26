@@ -4,6 +4,7 @@ import { SERVER_URL } from '../constants.js';
 //import AuthContext from './AuthContext';
 import Stack from '@mui/material/Stack';
 import TopUp from './TopUp';
+import Pay from './Pay';
 
 function ClientInfo() {
   //const authContext = React.useContext(AuthContext);
@@ -50,10 +51,32 @@ function ClientInfo() {
     .catch(err => console.error(err))
   }
 
+  const pay = (payment) => {
+    const token = sessionStorage.getItem("jwt");
+
+    fetch(SERVER_URL  +  `v1/payment/pay/${payment.to}`,
+      { method: 'PATCH', headers: {
+        'Content-Type':'application/json',
+        'Authorization' : token
+      },
+      body: payment.amount
+    })
+    .then(response => {
+      if (response.ok) {
+        fetchClient();
+      }
+      else {
+        alert('Something went wrong!');
+      }
+    })
+    .catch(err => console.error(err))
+  }
+
   return( 
     <React.Fragment>
-      <Stack mt={2} mb={2}>
+      <Stack spacing={2} mt={2} mb={2}>
         <TopUp topUp={topUp} />
+        <Pay pay={pay} />
       </Stack>
       <div style={{ height: 500, width: '100%' }}>
         <p>Hello {name}</p>
