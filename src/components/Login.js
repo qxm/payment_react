@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
-import MyComponent from './MyComponent';
+import ClientInfo from './ClientInfo';
 
 import { SERVER_URL } from '../constants.js';
 
@@ -39,7 +39,7 @@ function Login() {
   }
 
   if (isAuthenticated) {
-    return <MyComponent />;
+    return <ClientInfo />;
   }
   else {  
     return(
